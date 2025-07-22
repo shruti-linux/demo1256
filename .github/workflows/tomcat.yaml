@@ -17,13 +17,15 @@ jobs:
 
       - name: Download Tomcat
         run: |
-          wget https://downloads.apache.org/tomcat/tomcat-10/v10.1.43/bin/apache-tomcat-10.1.43.tar.gz -P /tmp
           sudo mkdir -p /opt/tomcat
-          sudo tar xzf /tmp/apache-tomcat-10.1.43.tar.gz -C /opt/tomcat --strip-components=1
+          sudo chmod 777 /opt/tomcat
+          wget https://downloads.apache.org/tomcat/tomcat-10/v10.1.43/bin/apache-tomcat-10.1.43.tar.gz -P /opt/tomcat
+    
+          sudo tar xzf /opt/tomcat/apache-tomcat-10.1.43.tar.gz -C /opt/tomcat --strip-components=1
 
       - name: Setup permissions
         run: |
-          sudo chmod +x /opt/tomcat/bin/*.sh
+          sudo chmod 777 /opt/tomcat/bin/*.sh
 
       - name: Start Tomcat
         run: |
