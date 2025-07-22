@@ -5,9 +5,9 @@ on:
 
 jobs:
   hello:
-    name: Say Hello shruti 
+    name: Say Hello shruti kul
     runs-on: [self-hosted , webserver ]
 
     steps:
-      - name: Print Hello World shruti
+      - name: Print Hello World shruti kulshrestha
         run: echo "Hello, World from self-hosted runner!"
