@@ -1,0 +1,29 @@
+name: Ansible Ping Test from CentOS 9
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ansible-ping:
+    name: Ansible Ping
+    runs-on: [self-hosted]
+
+    steps:
+      - name: Show Host Info
+        run: |
+          echo "Running Ansible Ping on:"
+          hostname
+          cat /etc/os-release
+
+      - name: Install EPEL and Ansible
+        run: |
+          sudo dnf install -y epel-release
+          sudo dnf install -y ansible
+
+      - name: Create Inventory File
+        run: |
+          echo -e "[local]\nlocalhost ansible_connection=local" > inventory
+
+      - name: Run Ansible Ping
+        run: |
+          ansible -i inventory all -m ping
