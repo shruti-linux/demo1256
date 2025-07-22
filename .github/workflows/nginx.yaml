@@ -18,5 +18,5 @@ jobs:
           
       - name: Install NGINX on CentOS
         run: |
-          sudo echo " hello shruti , i m good " > /usr/share/nginx/html/index.html
+          sudo echo "<html><body>Hello shruti he</body></htm " > /usr/share/nginx/html/abc.html
           sudo systemctl restart nginx 
