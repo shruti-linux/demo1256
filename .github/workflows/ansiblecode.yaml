@@ -1,0 +1,28 @@
+name: Install Ansible on CentOS 9
+
+on:
+  workflow_dispatch:
+
+jobs:
+  install-ansible:
+    name: Install Ansible
+    runs-on: [webserver]
+
+    steps:
+      - name: Show system info
+        run: |
+          echo "Running on:"
+          hostname
+          cat /etc/os-release
+
+      - name: Install EPEL repository
+        run: |
+          sudo dnf install -y epel-release
+
+      - name: Install Ansible
+        run: |
+          sudo dnf install -y ansible
+
+      - name: Check Ansible version
+        run: |
+          ansible --version
