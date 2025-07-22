@@ -1,0 +1,20 @@
+name: Install HTTPD on CentOS 9
+
+on:
+  workflow_dispatch:
+
+jobs:
+  install-httpd:
+    runs-on: [webservers]
+
+    steps:
+      - name: Install Apache HTTPD
+        run: |
+          sudo dnf install -y httpd
+          sudo systemctl enable httpd
+          sudo systemctl start httpd
+          sudo systemctl status httpd
+
+      - name: Serve a test page
+        run: |
+          echo "Hello from GitHub Actions on CentOS 9!" | sudo tee /var/www/html/index.html
