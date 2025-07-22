@@ -1,0 +1,21 @@
+name: Install Terraform on CentOS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  install-terraform:
+    runs-on: [self-hosted ]  # Replace with your actual runner label
+    steps:
+      - name: Install required packages
+        run: |
+          sudo dnf install -y yum-utils
+
+      - name: Add HashiCorp YUM repo
+        run: |
+          sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+
+      - name: Install Terraform
+        run: |
+          sudo dnf install -y terraform
+          terraform version
