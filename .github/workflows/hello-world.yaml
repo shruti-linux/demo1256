@@ -6,7 +6,7 @@ on:
 jobs:
   hello:
     name: Say Hello shruti 
-    runs-on: self-hosted
+    runs-on: [self-hosted , webserver ]
 
     steps:
       - name: Print Hello World shruti
