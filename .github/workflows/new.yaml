@@ -5,7 +5,7 @@ on:
 
 jobs:
   install-httpd:
-    runs-on: [webservers]
+    runs-on: [webserver]
 
     steps:
       - name: Install Apache HTTPD
