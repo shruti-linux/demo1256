@@ -1,0 +1,28 @@
+name: Install NGINX with Template
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup-nginx:
+    runs-on: [self-hosted]  # Change to your actual runner label
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install NGINX on CentOS
+        run: |
+          sudo dnf install -y epel-release
+          sudo dnf install -y nginx
+          sudo systemctl enable nginx
+          sudo systemctl start nginx
+
+      - name: Deploy custom index.html
+        run: |
+          sudo cp nginx-template/index.html /usr/share/nginx/html/index.html
+          sudo systemctl reload nginx
+
+      - name: Check NGINX status
+        run: |
+          sudo systemctl status nginx --no-pager
