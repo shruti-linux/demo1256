@@ -20,7 +20,7 @@ jobs:
 
       - name: Deploy custom index.html
         run: |
-          sudo cp nginx-template/index.html /usr/share/nginx/html/index.html
+          sudo cp /root/nginx-template/index.html /usr/share/nginx/html/index.html
           sudo systemctl reload nginx
 
       - name: Check NGINX status
