@@ -1,0 +1,16 @@
+name: Install NGINX on CentOS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  install-nginx:
+    runs-on: [self-hosted, centos-runner]  # Replace with your actual label
+    steps:
+      - name: Install NGINX on CentOS
+        run: |
+          sudo dnf install -y epel-release
+          sudo dnf install -y nginx
+          sudo systemctl enable nginx
+          sudo systemctl start nginx
+          sudo systemctl status nginx --no-pager
