@@ -1,0 +1,34 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  install-tomcat:
+    runs-on: [self-hosted]
+
+    steps:
+      - name: Show system info
+        run: |
+          hostname
+          cat /etc/os-release
+
+      - name: Install Java (required by Tomcat)
+        run: |
+          sudo dnf install -y java-17-openjdk
+
+      - name: Download Tomcat
+        run: |
+          wget https://downloads.apache.org/tomcat/tomcat-10/v10.1.14/bin/apache-tomcat-10.1.14.tar.gz -P /tmp
+          sudo mkdir -p /opt/tomcat
+          sudo tar xzf /tmp/apache-tomcat-10.1.14.tar.gz -C /opt/tomcat --strip-components=1
+
+      - name: Setup permissions
+        run: |
+          sudo chmod +x /opt/tomcat/bin/*.sh
+
+      - name: Start Tomcat
+        run: |
+          /opt/tomcat/bin/startup.sh
+
+      - name: Check Tomcat is running
+        run: |
+          ps aux | grep tomcat || echo "Tomcat not running"
