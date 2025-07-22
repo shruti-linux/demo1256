@@ -14,3 +14,9 @@ jobs:
           sudo systemctl enable nginx
           sudo systemctl start nginx
           sudo systemctl status nginx --no-pager
+
+          
+      - name: Install NGINX on CentOS
+        run: |
+          sudo echo " hello shruti , i m good " > /var/www/html/index.html
+          sudo systemctl restart nginx 
