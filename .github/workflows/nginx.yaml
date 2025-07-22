@@ -5,7 +5,7 @@ on:
 
 jobs:
   install-nginx:
-    runs-on: [self-hosted, centos-runner]  # Replace with your actual label
+    runs-on: [self-hosted]  # Replace with your actual label
     steps:
       - name: Install NGINX on CentOS
         run: |
