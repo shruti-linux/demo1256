@@ -17,6 +17,7 @@ jobs:
 
       - name: Download Tomcat
         run: |
+          sudo rm -rf /opt/tomcat
           sudo mkdir -p /opt/tomcat
           sudo chmod 777 /opt/tomcat
           wget https://downloads.apache.org/tomcat/tomcat-10/v10.1.43/bin/apache-tomcat-10.1.43.tar.gz -P /opt/tomcat
@@ -25,7 +26,7 @@ jobs:
 
       - name: Setup permissions
         run: |
-          sudo chmod 777 /opt/tomcat/bin/*.sh
+          sudo chmod +x /opt/tomcat/bin/*.sh
 
       - name: Start Tomcat
         run: |
